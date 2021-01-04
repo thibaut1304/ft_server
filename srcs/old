@@ -1,0 +1,25 @@
+server {
+              listen 80;
+              root /var/www/html;
+              index index.html index.htm index.php;
+              server_name example.com example;
+
+              access_log /var/log/nginx/myexample.access.http.log;
+              error_log /var/log/nginx/myexample.error.http.log;
+              
+              return 301 https;
+}
+
+server {
+        listen 443;
+        root /var/www/html;
+        index index.html index.htm index.php;
+        server_name example.com example;
+        access_log /var/log/nginx/myexample.access.https.log;
+        error_log /var/log/nginx/myexample.error.https.log;
+        ssl on;
+        ssl_certificate /etc/nginx/ssl/server.crt;
+        ssl_certificate_key /etc/nginx/ssl/server.key;
+        
+        autoindex on;
+}
